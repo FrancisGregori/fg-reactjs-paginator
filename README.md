@@ -1,6 +1,6 @@
 # fg-reactjs-paginator
 
-> A ReactJS component to render a pagination with logic like Google's search results.
+> A ReactJS component to render pagination with logic like Google's search results.
 
 [![NPM](https://img.shields.io/npm/v/fg-reactjs-paginator)](https://www.npmjs.com/package/fg-reactjs-paginator) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -56,12 +56,25 @@ export default App
     button: "button-class",
     disabled: "disabled-class",
     active: "active-class",
+    firstButton: 'first-button-class'
+    lastButton: 'last-button-class'
+    previousButton: 'previous-button-class'
+    nextButton: 'next-button-class'
   }}
   ...
 />
 
 /* Example of structure with classes */
 <ul className='container-class'>
+
+  <li>
+    {/*First button*/}
+    <button className='button-class first-class'>First</button>
+  </li>
+  <li>
+    {/*Previous button*/}
+    <button className='button-class previous-class'>Previous</button>
+  </li>
   <li>
     {/*Standard button*/}
     <button className='button-class'>...</button>
@@ -74,24 +87,34 @@ export default App
     {/*Active button*/}
     <button className='button-class active-class'>...</button>
   </li>
+  <li>
+    {/*Next button*/}
+    <button className='button-class next-class'>Next</button>
+  </li>
+  <li>
+    {/*Last button*/}
+    <button className='button-class last-class'>Last</button>
+  </li>
 </ul>
 ```
+> The `active` and `disabled` classes are applied to all buttons!
 
 
 ## Props
 
 | Name                     | Type       | Description                                                                                  |
 | ------------------------ | ---------- | -------------------------------------------------------------------------------------------- |
-| `items`                  | `Number`   | **Required.** Array of items to be paged.                                                     |
-| `handleFilteredItems`    | `Function` | **Required.** Function that will receive filtered items.                                    |
-| `itemsPerPage`           | `Number`   | Number of items returned per page.                                                             |
-| `paginationSize`         | `Number`   | Number of buttons shown on the pagination.                                                             |
-| `previousLabel`          | `Node`     | Label for the `previous` button.                                                             |
-| `nextLabel`              | `Node`     | Label for the `next` button.                                                                 |
-| `firstLabel`             | `Node`     | Label for the `first` button.                                                                 |
-| `lastLabel`              | `Node`     | Label for the `last` button.                                                                 |
+| `items`                  | `Number`   | **Required.** Array of items to be paged.                                                    |
+| `handleFilteredItems`    | `Function` | **Required.** Function that will receive filtered items.                                     |
+| `itemsPerPage`           | `Number`   | Number of items returned per page. Default value `10`                                        |
+| `paginationSize`         | `Number`   | Number of buttons shown on the pagination. Default value `10`                                |
+| `previousLabel`          | `Node`     | Label for the `previous` button. Default value `Previous`                                    |
+| `nextLabel`              | `Node`     | Label for the `next` button. Default value `Next`                                            |
+| `firstLabel`             | `Node`     | Label for the `first` button. Default value `First`                                          |
+| `lastLabel`              | `Node`     | Label for the `last` button. Default value `Last`                                            |
 | `initialPage`            | `Number`   | The initial page selected.                                                                   |
-| `classes`                | `Object`   | Object to override component classes                                                             |
+| `classes`                | `Object`   | Object to override component classes                                                         |
+| `showFirstAndLastButtons`| `Boolean`  | Show/hide `First` and `Last` buttons. Default value `true`                                   |
 
 ## Contribute
 

@@ -6,6 +6,10 @@ interface ReactPaginatorClasses {
   button?: string
   disabled?: string
   active?: string
+  firstButton?: string
+  lastButton?: string
+  previousButton?: string
+  nextButton?: string
 }
 
 interface ReactPaginatorProps {
@@ -19,6 +23,7 @@ interface ReactPaginatorProps {
   previousLabel?: string
   nextLabel?: string
   classes?: ReactPaginatorClasses
+  showFirstAndLastButtons?: boolean
 }
 
 const ReactPaginator: React.FC<ReactPaginatorProps> = ({
@@ -31,7 +36,8 @@ const ReactPaginator: React.FC<ReactPaginatorProps> = ({
   lastLabel = 'Last',
   previousLabel = 'Previous',
   nextLabel = 'Next',
-  classes
+  classes,
+  showFirstAndLastButtons = true
 }): React.ReactElement | null => {
   const [totalPages, setTotalPages] = useState<number>(0)
   const [currentPage, setCurrentPage] = useState<number>(initialPage || 1)
@@ -77,7 +83,7 @@ const ReactPaginator: React.FC<ReactPaginatorProps> = ({
 
   useEffect(() => {
     setTotalPages(Math.ceil(items.length / itemsPerPage))
-  }, [])
+  }, [items])
 
   useEffect(() => {
     handlePaginator()
@@ -103,17 +109,20 @@ const ReactPaginator: React.FC<ReactPaginatorProps> = ({
             : styles.reactPaginator
         }
       >
-        <li>
-          <button
-            className={`${buttonClass} ${
-              currentPage === 1 ? disabledClass : ''
-            }`}
-            type='button'
-            onClick={() => setCurrentPage(1)}
-          >
-            {firstLabel}
-          </button>
-        </li>
+        {showFirstAndLastButtons && (
+          <li>
+            <button
+              className={`${buttonClass} ${
+                currentPage === 1 ? disabledClass : ''
+              }`}
+              type='button'
+              onClick={() => setCurrentPage(1)}
+            >
+              {firstLabel}
+            </button>
+          </li>
+        )}
+
         <li>
           <button
             className={`${buttonClass} ${
@@ -157,17 +166,19 @@ const ReactPaginator: React.FC<ReactPaginatorProps> = ({
             {nextLabel}
           </button>
         </li>
-        <li>
-          <button
-            className={`${buttonClass} ${
-              currentPage === totalPages ? disabledClass : ''
-            }`}
-            type='button'
-            onClick={() => setCurrentPage(totalPages)}
-          >
-            {lastLabel}
-          </button>
-        </li>
+        {showFirstAndLastButtons && (
+          <li>
+            <button
+              className={`${buttonClass} ${
+                currentPage === totalPages ? disabledClass : ''
+              }`}
+              type='button'
+              onClick={() => setCurrentPage(totalPages)}
+            >
+              {lastLabel}
+            </button>
+          </li>
+        )}
       </ul>
     )
   )

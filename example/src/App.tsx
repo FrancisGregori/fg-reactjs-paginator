@@ -23,6 +23,7 @@ const App = () => {
         itemsPerPage={10}
         handleFilteredItems={setFilteredItems}
         paginationSize={5}
+        showFirstAndLastButtons={false}
       />
     </div>
   )
