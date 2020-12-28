@@ -82,6 +82,7 @@ const ReactPaginator: React.FC<ReactPaginatorProps> = ({
   }
 
   useEffect(() => {
+    setCurrentPage(1)
     setTotalPages(Math.ceil(items.length / itemsPerPage))
   }, [items])
 
@@ -98,7 +99,7 @@ const ReactPaginator: React.FC<ReactPaginatorProps> = ({
     const paginatedItems = items.slice(startIndex, endIndex + 1)
 
     handleFilteredItems(paginatedItems)
-  }, [currentPage])
+  }, [currentPage, items])
 
   return (
     pages && (
