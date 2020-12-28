@@ -1,6 +1,6 @@
 {
   "name": "fg-reactjs-paginator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A ReactJS component to render a pagination with logic like Google's search results.",
   "author": "FrancisGregori",
   "license": "MIT",
